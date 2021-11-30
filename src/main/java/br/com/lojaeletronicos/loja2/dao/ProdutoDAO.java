@@ -47,7 +47,7 @@ public class ProdutoDAO {
 //    }
 
     public boolean salvar(ProdutoForm produto) throws ParseException {
-        java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(produto.getDataEntrada());
+        java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(produto.getDataEntrada());
         Date dateSql = new Date(date.getYear(), date.getMonth(), date.getDay());
         String codigoProduto = UUID.randomUUID().toString();
         try (PreparedStatement pstm = conexao.prepareStatement(
@@ -122,7 +122,7 @@ public class ProdutoDAO {
         //UPDATE NOME_TABELA SET NOME = ''',  DESCRICAO =''',
         //PRECO = 0, DATA_ENTRADA = TO_DATE(""), QUANTIDADE = 0
         //WHERE CODIGO_PRODUTO = '';
-        java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(produto.getDataEntrada());
+        java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(produto.getDataEntrada());
         Date dateSql = new Date(date.getYear(), date.getMonth(), date.getDay());
         try (PreparedStatement pstm = conexao.prepareStatement(
                 "UPDATE produto SET NOME = ?, DESCRICAO = ?, PRECO = ?, DATA_ENTRADA = ?, QUANTIDADE = ? WHERE codigo_produto = ?")) {
